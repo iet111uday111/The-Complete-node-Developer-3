@@ -1,0 +1,592 @@
+WEBVTT
+
+00:00.610 --> 00:04.200
+In this video you're going to learn how to improve your mongoose models.
+
+00:04.210 --> 00:06.800
+This is going to let you add things like validation.
+
+00:06.820 --> 00:12.310
+You can make certain properties required and you can set up smart defaults so if something like complete
+
+00:12.310 --> 00:16.680
+it is not provided you can have a default value that gets set.
+
+00:16.810 --> 00:19.360
+All of this functionality is built into mongoose.
+
+00:19.360 --> 00:23.490
+We just have to learn how to use it and to illustrate why we'd want to set this stuff up.
+
+00:23.590 --> 00:28.250
+Let's scroll to the bottom of our server file and remove all of the properties on the new.
+
+00:28.300 --> 00:33.700
+Do we create then we're going to save the file and move into the terminal running the script that's
+
+00:33.700 --> 00:38.070
+going to be node in the server directory and the file is called server.
+
+00:38.180 --> 00:38.760
+Yes.
+
+00:38.860 --> 00:40.390
+When we run it what do we get.
+
+00:40.390 --> 00:46.390
+We get our new to do but it only has the version and Id properties all of the properties we specified
+
+00:46.390 --> 00:48.710
+in the model tax completed and completed.
+
+00:48.730 --> 00:50.050
+They're nowhere to be found.
+
+00:50.200 --> 00:51.670
+That's a pretty big problem.
+
+00:51.700 --> 00:57.220
+We should not be adding to dues to the database if they don't have a Text property and things like completed
+
+00:57.220 --> 00:59.070
+should have smart defaults.
+
+00:59.110 --> 01:05.140
+No one is going to create a to do item if they already completed it so completed should default to false.
+
+01:05.140 --> 01:10.150
+Now in order to get started we're going to pull up two pages in the mongoose documentation just so you
+
+01:10.150 --> 01:11.560
+know where this stuff lives.
+
+01:11.560 --> 01:13.790
+If you ever want to dive deeper in the future.
+
+01:13.960 --> 01:17.070
+First up we're going to look up the validators.
+
+01:17.210 --> 01:23.580
+I'm going to google mongoose validators and this is going to show us all of the default validation properties
+
+01:23.580 --> 01:24.780
+we have built in.
+
+01:24.780 --> 01:27.980
+For example we can set something as required.
+
+01:27.990 --> 01:32.480
+So if it's not provided it's going to throw an error when we try to save that model.
+
+01:32.490 --> 01:38.910
+We can also set up validators for things like numbers and strings giving a min max value or a min length
+
+01:38.970 --> 01:41.960
+max length value for a string.
+
+01:42.000 --> 01:46.260
+The other page we're going to look at is the schemas page to get to this.
+
+01:46.260 --> 01:52.290
+We're going to google mongoose schemas.
+
+01:52.370 --> 01:57.560
+This is the first one the guide dot h t m l file and on this page you're going to see something slightly
+
+01:57.560 --> 01:59.480
+different from what we've been doing so far.
+
+01:59.630 --> 02:00.230
+Right here.
+
+02:00.230 --> 02:02.990
+They call new schema setting up all of their properties.
+
+02:02.990 --> 02:06.140
+This is not something we've done yet but we will in the future.
+
+02:06.140 --> 02:12.410
+For now you can consider this object the schema object identical to the one we have over an atom that
+
+02:12.410 --> 02:16.210
+we pass in as the second argument to our mongoose model.
+
+02:16.220 --> 02:18.050
+Call to kick things off.
+
+02:18.050 --> 02:21.520
+Let's customize how mongoose treats are taxed property.
+
+02:21.560 --> 02:26.510
+Currently we tell mongoose that we want it to be a string but we don't have any validators.
+
+02:26.540 --> 02:31.770
+One of the first things we can do for the Text property is set required equal to true.
+
+02:32.030 --> 02:35.960
+When you set required equal to true the value must exist.
+
+02:35.960 --> 02:41.900
+So if I were to try to save this to do it would fail and we can prove this we can save the file head
+
+02:41.900 --> 02:45.230
+over to the terminal shut things down or restart it.
+
+02:45.230 --> 02:45.950
+And what do we get.
+
+02:45.950 --> 02:48.040
+We get unreadable error message.
+
+02:48.080 --> 02:49.360
+We'll dive into this in a second.
+
+02:49.360 --> 02:55.640
+But for now all you need to know is that we're getting a validation error to do validation failed and
+
+02:55.640 --> 02:57.820
+that is fantastic.
+
+02:57.830 --> 03:04.070
+Now aside from just making sure the Text property exists we can also set up some custom validators for
+
+03:04.070 --> 03:04.730
+strings.
+
+03:04.730 --> 03:09.390
+For example we have a min length validator and this is fantastic.
+
+03:09.530 --> 03:14.150
+You shouldn't be able to create it to do whose text is an empty string like this one.
+
+03:14.150 --> 03:20.690
+We can set min length equal to the minimum length which we're going to set as one in this case now even
+
+03:20.690 --> 03:26.810
+if we do provide a text property down below let's say we get taxed equal to an empty string it's still
+
+03:26.810 --> 03:27.580
+going to fail.
+
+03:27.770 --> 03:33.610
+It is indeed there but it does not pass this validator or the min length must be 1.
+
+03:33.830 --> 03:40.250
+I can save the server file restart things over in the terminal and we still get a failure.
+
+03:40.260 --> 03:45.390
+Now aside from required and min length there are a couple other utilities that are around in the docs.
+
+03:45.510 --> 03:52.470
+One good example is something called trim trim is fantastic for strings essentially trim trim off any
+
+03:52.470 --> 03:55.340
+white space in the beginning or end of your value.
+
+03:55.380 --> 04:00.680
+If I set trim equal to true it's going to remove any leading or trailing whitespace.
+
+04:00.720 --> 04:06.000
+So if I try to create a to do whose text property is just a bunch of spaces it's still going to fail
+
+04:06.390 --> 04:11.640
+the term property is going to remove all of the leading and trailing spaces leaving an empty string.
+
+04:11.640 --> 04:18.660
+And if I rerun things we still get a failure in the text field is invalid.
+
+04:18.690 --> 04:22.370
+Now if we do provide a valid value things are going to work as expected.
+
+04:22.500 --> 04:29.160
+Right in the middle of all of these spaces I'm going to provide a REAL to do a value edit this video
+
+04:30.030 --> 04:34.560
+when we try to save this to do what's going to happen is first up these spaces in the beginning and
+
+04:34.560 --> 04:35.300
+the end of the string.
+
+04:35.310 --> 04:39.750
+Those are going to get trimmed and then it's going to validate that this string has a minimum length
+
+04:39.750 --> 04:41.180
+of 1 which it does.
+
+04:41.190 --> 04:45.620
+And finally it will save the to do to the database.
+
+04:45.780 --> 04:52.080
+I'm going to go ahead and save server japes restart our script and this time around we get our to do
+
+04:52.240 --> 04:55.050
+it this video shows up as the text property.
+
+04:55.050 --> 04:58.850
+Those A leading and trailing spaces have been removed.
+
+04:58.950 --> 05:00.080
+And this is fantastic.
+
+05:00.210 --> 05:06.560
+Using just three properties we were able to configure our text property setting up some validation.
+
+05:06.570 --> 05:10.440
+Now we can do similar stuff for completed for completed.
+
+05:10.440 --> 05:15.960
+We're not going to require it because the completed value is most likely going to default to false.
+
+05:15.960 --> 05:22.890
+So what we can do instead is set the default property giving this completed field the default value
+
+05:23.430 --> 05:27.620
+now completed as we talked about earlier in the video should default to false.
+
+05:27.620 --> 05:31.040
+There is no reason to create it to do if it's already done.
+
+05:31.080 --> 05:37.260
+We can do the same thing for completed as if a to do starts off not completed and completed and is not
+
+05:37.260 --> 05:42.180
+going to exist completed is only going to exist when that to do has been completed it's going to be
+
+05:42.180 --> 05:43.650
+that time stamp.
+
+05:43.650 --> 05:47.720
+So what I'm going to do is set default equal to no.
+
+05:48.030 --> 05:48.980
+Awesome.
+
+05:49.020 --> 05:52.760
+Now with this in place we have a pretty good schema for our to do.
+
+05:52.920 --> 05:57.870
+We're going to validate that the text is set up properly by the user and we are going to set up these
+
+05:57.870 --> 06:01.610
+values by ourself since we can just use defaults.
+
+06:01.680 --> 06:09.230
+With this in place I can now rerun our server file and here we get a better default to do we have the
+
+06:09.230 --> 06:13.280
+text of the user provided it's been validated and trimmed down below.
+
+06:13.370 --> 06:17.480
+We have completed set to false and it completed and set to NULL.
+
+06:17.570 --> 06:18.680
+And this is fantastic.
+
+06:18.680 --> 06:23.480
+We now have a foolproof schema that has good defaults and validation.
+
+06:23.480 --> 06:28.760
+Now if you've been playing around with the various types you might have noticed that if you set a type
+
+06:28.880 --> 06:34.070
+equal to something other than the type you specified in certain cases it does still work.
+
+06:34.070 --> 06:39.740
+For example down below if I try to set text equal to an object I'm going to get an error that's going
+
+06:39.740 --> 06:43.740
+to say hey you tried to use a string but that object showed up instead.
+
+06:43.940 --> 06:48.860
+But if I try to set text equal to something like a number I'm going to go with 23.
+
+06:48.860 --> 06:51.200
+This is going to work.
+
+06:51.230 --> 06:57.470
+That's because Mongoose is going to cast your number in to a string essentially wrapping it in quotes.
+
+06:57.470 --> 06:59.640
+The same thing is going to be true with a boolean.
+
+06:59.810 --> 07:05.480
+If I pass in a boolean like this the resulting string is going to be the one I have right here.
+
+07:05.630 --> 07:13.190
+I'm going to go ahead and save the file after setting text equal to true and run the script when I do
+
+07:13.190 --> 07:13.300
+it.
+
+07:13.310 --> 07:13.880
+What do I get.
+
+07:13.880 --> 07:16.850
+I get taxed equal to true right here.
+
+07:16.850 --> 07:19.290
+Notice it is indeed wrapped in quotes.
+
+07:19.460 --> 07:23.740
+It's important to be aware that typecasting does exist inside of mongoose.
+
+07:23.750 --> 07:27.170
+It can easily trip you up and cause some unexpected errors.
+
+07:27.170 --> 07:34.130
+For now though I am going to set text back equal to a proper string now it's time for a challenge where
+
+07:34.130 --> 07:38.360
+you are going to be responsible for creating a brand new mongoose model.
+
+07:38.540 --> 07:42.010
+Down below I'll leave a few comments describing what I'd like to do.
+
+07:42.110 --> 07:47.600
+First up you're going to make a new user model and eventually we're going to use this for authentication.
+
+07:47.600 --> 07:52.410
+It's going to store stuff like an e-mail a password and the to do's are going to be associated with
+
+07:52.410 --> 07:53.150
+the user.
+
+07:53.150 --> 07:55.660
+So when I create one only I can edit it.
+
+07:55.730 --> 07:56.870
+Now that's all going to happen later.
+
+07:56.870 --> 08:00.590
+For now we're going to keep things really simple on the user.
+
+08:00.590 --> 08:06.390
+The only property you need to set up is the email property we'll set up others like password later.
+
+08:06.560 --> 08:11.000
+But it's going to be done a little differently since it needs to be secure so for now we'll just stick
+
+08:11.000 --> 08:12.250
+with e-mail.
+
+08:12.260 --> 08:14.960
+I do want you to require it.
+
+08:15.000 --> 08:16.290
+I also want you to Trinite.
+
+08:16.380 --> 08:21.000
+So if someone adds spaces before after those spaces go away.
+
+08:21.000 --> 08:22.350
+Last but not least.
+
+08:22.410 --> 08:31.200
+Go ahead and set the type equal to a string set type and set min length of one.
+
+08:31.200 --> 08:34.780
+Now obviously you'll be able to pass in a string that's not an e-mail.
+
+08:34.830 --> 08:37.470
+We'll explore custom validation a little later.
+
+08:37.500 --> 08:40.640
+This is going to let us validate that the email is an e-mail.
+
+08:40.680 --> 08:43.440
+But for now this is going to get us on the right track.
+
+08:43.530 --> 08:49.050
+Once you have your mongoose model created I want you to go ahead and try to create a new user create
+
+08:49.050 --> 08:54.120
+one without the email property and then make one with one making sure that when you run the script the
+
+08:54.120 --> 08:57.130
+data shows up as expected over in Roboam Mongo.
+
+08:57.240 --> 09:00.710
+And this data should show up in the new users collection.
+
+09:00.900 --> 09:05.580
+Take a moment to create the model save a user and check it out in the database.
+
+09:05.580 --> 09:11.760
+Pause the video and when you're done go ahead and click play.
+
+09:11.890 --> 09:16.680
+And I hope that wasn't too much trouble the first thing I'm going to do is make a variable to store
+
+09:16.680 --> 09:25.530
+this new model a variable called uppercase U user and I'm going to set that equal to mongoose dot model
+
+09:25.710 --> 09:28.180
+which is how we can make our new user model.
+
+09:28.290 --> 09:32.000
+The first argument as you know needs to be the string model name.
+
+09:32.100 --> 09:36.930
+I'm going to use the exact same name as I specified over in the variable although it could be different
+
+09:37.190 --> 09:42.120
+I just like to keep things using this pattern where the variable equals the model name.
+
+09:42.120 --> 09:47.340
+Next up as the second argument we can specify the object where we can figure all the properties a user
+
+09:47.340 --> 09:48.260
+should have.
+
+09:48.300 --> 09:50.140
+Now as I mentioned we'll be adding others later.
+
+09:50.160 --> 09:55.260
+But for now adding support for an email property will be good enough and there's a few things I want
+
+09:55.260 --> 09:56.760
+to do on this e-mail.
+
+09:56.760 --> 09:58.710
+First up I want to set the type.
+
+09:58.920 --> 10:03.840
+An email is always going to be a string so we can set that type equal to string.
+
+10:03.840 --> 10:05.090
+Next up we're going to require it.
+
+10:05.090 --> 10:07.420
+You can't make a user without an e-mail.
+
+10:07.530 --> 10:12.510
+So all set required equal to true after required.
+
+10:12.510 --> 10:17.430
+We're going to go ahead and trim that e-mail if someone adds spaces before or after it it's clearly
+
+10:17.430 --> 10:18.180
+a mistake.
+
+10:18.180 --> 10:20.500
+So we'll go ahead and remove those for the user.
+
+10:20.610 --> 10:23.350
+Making your application just a little more user friendly.
+
+10:23.460 --> 10:27.290
+Last but not least what we want to do is set up a min length.
+
+10:27.630 --> 10:32.970
+We'll be setting up customer validation later but for now a min length of one is going to get the trick
+
+10:33.180 --> 10:33.610
+done.
+
+10:34.430 --> 10:39.000
+Now I am going to go ahead and create a new instance of this user and save it before I run the script.
+
+10:39.010 --> 10:45.260
+Though I will be commenting out are new to do I actually have to do is commented out now so I'm going
+
+10:45.260 --> 10:49.580
+to go ahead and remove the first one leaving the second one.
+
+10:49.580 --> 10:52.280
+There's no need to have two examples of the same thing.
+
+10:52.370 --> 10:55.850
+And now down below we can pick a new instance of this a user model.
+
+10:56.030 --> 11:03.560
+I'm going to make a variable called user and set it equal to new user passing in any values we want
+
+11:03.560 --> 11:04.820
+to set on that user.
+
+11:04.820 --> 11:08.900
+Now I'm going to run it with nothing at first just to make sure the validation is working.
+
+11:09.350 --> 11:12.980
+Down below I can now call user dot save.
+
+11:13.220 --> 11:14.450
+Save returns I promise.
+
+11:14.480 --> 11:24.580
+So I can tack on a and then call back I'm going to add a success case for this one an air handler the
+
+11:24.580 --> 11:30.640
+air handler will get that air argument and the success case will get the duck if things go well I'll
+
+11:30.640 --> 11:33.160
+print a message using console dialogue.
+
+11:34.930 --> 11:38.780
+Use or saved followed by the doc.
+
+11:38.930 --> 11:43.380
+No need to format it for this example and I'll do the same thing down below.
+
+11:43.450 --> 11:45.010
+Council dot log.
+
+11:45.380 --> 11:50.380
+Unable to save user followed by the error object.
+
+11:50.390 --> 11:54.440
+Now since we're creating a user with no properties we would expect the error to print.
+
+11:54.440 --> 11:58.370
+I'm going to save server datcha Yes restart the file and what do we get.
+
+11:58.370 --> 11:59.390
+We get our error.
+
+11:59.390 --> 12:01.120
+It's a validation error path.
+
+12:01.130 --> 12:05.210
+Email is required mongooses letting us know that we do indeed have an error.
+
+12:05.210 --> 12:09.440
+The email does need to exist since we set required equal to true.
+
+12:09.440 --> 12:11.810
+I'm going to go ahead and put a value in here.
+
+12:11.810 --> 12:20.420
+Sending email to my email Andrew at example dot com and I'll put a few spaces afterwards this time around.
+
+12:20.430 --> 12:26.370
+Things should go as expected and trim should be trimming the end of that email removing all the spaces
+
+12:26.580 --> 12:27.950
+and that's exactly what we get.
+
+12:27.960 --> 12:32.560
+The user was indeed saved which is great and the email has been properly formatted.
+
+12:32.700 --> 12:37.260
+Now obviously I could have put a string in like 1 to 3 and it would have worked because we don't have
+
+12:37.260 --> 12:39.320
+custom validation set up just yet.
+
+12:39.360 --> 12:41.730
+But we have a pretty good starting point.
+
+12:41.730 --> 12:46.410
+We have the user model and we have our email Propp set up and ready to go.
+
+12:46.410 --> 12:50.610
+With this in place we are now going to start creating that API in the next video.
+
+12:50.610 --> 12:55.700
+You're going to install a tool called post man which is going to help us test our TTP requests.
+
+12:55.750 --> 13:00.900
+Then right after that one which will be a quick one we're going to create our very first route for our
+
+13:00.900 --> 13:02.650
+to do rest API

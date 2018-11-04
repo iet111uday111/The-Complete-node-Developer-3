@@ -1,0 +1,274 @@
+WEBVTT
+
+00:00.580 --> 00:03.330
+This video you're going to learn how to use post ma'am.
+
+00:03.450 --> 00:06.620
+Postman isn't a central tool if you're building a rest API.
+
+00:06.720 --> 00:13.020
+I have never worked with a team or on a project where post man was not heavily used by every developer
+
+00:13.020 --> 00:13.930
+involved.
+
+00:14.020 --> 00:18.240
+Postman lets you create HTP requests and fire them off.
+
+00:18.240 --> 00:22.500
+That makes it really easy to test that everything you're writing is working as expected.
+
+00:22.500 --> 00:28.650
+Now obviously we will also be writing automated tests but using postman lets you play around with data
+
+00:28.680 --> 00:32.060
+and see how things work as you move through your API.
+
+00:32.190 --> 00:35.200
+It really is a fantastic tool to grab it.
+
+00:35.220 --> 00:40.340
+We're going to head over to the browser and go to get post man and dot com.
+
+00:40.500 --> 00:43.570
+And here we can grab their chrome application.
+
+00:43.710 --> 00:48.030
+Now if you're not using Chrome you are going to need to install it although you don't have to use the
+
+00:48.030 --> 00:49.160
+Chrome browser.
+
+00:49.230 --> 00:52.380
+All you have to do is install Chrome to install the app.
+
+00:52.380 --> 00:55.320
+Open up post man and you never have to use Chrome again.
+
+00:55.410 --> 00:56.820
+If you already use Chrome great.
+
+00:56.880 --> 00:58.180
+Go ahead and install that.
+
+00:58.320 --> 01:01.640
+If you are on a Mac they just introduced a Mac app..
+
+01:01.650 --> 01:03.150
+It is a great alternative.
+
+01:03.150 --> 01:08.180
+It has all the same features it's just bundled differently instead of opening Chrome to open post man.
+
+01:08.250 --> 01:12.350
+You can just open the app from Spotlight like I can here.
+
+01:12.620 --> 01:17.060
+Now I'm going to be using the chrome application since that's most likely what you'll be using if you're
+
+01:17.060 --> 01:19.070
+not on a Mac to install it.
+
+01:19.070 --> 01:25.760
+All you have to do is install the chrome app from the Chrome store click add to Chrome and it should
+
+01:25.760 --> 01:29.810
+bring you over to the page where you can open up the application.
+
+01:29.810 --> 01:34.790
+Now to open up chrome apps you have to go to this kind of weird you are Alex Krome Kallen forward slash
+
+01:34.850 --> 01:40.790
+forward slash apps here and you can view all of your apps and we can just open up post man by clicking
+
+01:40.800 --> 01:41.370
+it.
+
+01:41.510 --> 01:47.540
+Now as I mentioned post man lets you make HTP request so we're going to go ahead and make a few to play
+
+01:47.540 --> 01:49.230
+around with the user interface.
+
+01:49.250 --> 01:55.040
+You do not need to make an account and you do not need to sign up for a paid plan that paid plans are
+
+01:55.040 --> 01:58.440
+targeted towards teams of developers who need advanced features.
+
+01:58.460 --> 02:03.850
+We are just making basic requests on our machine we don't need cloud storage or anything like that.
+
+02:03.860 --> 02:07.500
+I'm going to skip account creation and we go right to the application.
+
+02:07.760 --> 02:09.650
+Here we can set up our request.
+
+02:09.650 --> 02:14.720
+This is what happens in the panel right here and down below in the whitespace will be able to view the
+
+02:14.720 --> 02:15.550
+result.
+
+02:15.740 --> 02:19.530
+Let's go ahead and make a request to Google in the you are Albar.
+
+02:19.530 --> 02:23.740
+I'm going to type HTP Kallen forward slash forward slash.
+
+02:23.750 --> 02:25.650
+Google dot com.
+
+02:25.830 --> 02:28.430
+We can click send it to send off that request.
+
+02:28.430 --> 02:32.190
+Make sure you have get chosen as your HTP method.
+
+02:33.390 --> 02:38.320
+When I fire off the request it comes back and all of the data that comes back is shown below.
+
+02:38.340 --> 02:39.900
+We have things like the status code.
+
+02:39.900 --> 02:42.420
+We have a 200 here meaning things went great.
+
+02:42.450 --> 02:44.900
+We have the time it took about a quarter of a second.
+
+02:45.030 --> 02:46.190
+We have headers.
+
+02:46.290 --> 02:48.650
+These are coming back from Google we have cookies.
+
+02:48.660 --> 02:54.650
+There's none in this case and we have our body data the body for Google dot com is an H TNL Web site
+
+02:54.960 --> 02:59.200
+for the most part the bodies that we'll be sending and getting in post man are going to be Jason since
+
+02:59.220 --> 03:01.780
+we're building out that rest a PR.
+
+03:01.980 --> 03:06.250
+So to illustrate how Jason data works we're going to make a request to the geocoding.
+
+03:06.270 --> 03:08.620
+You are out that we used earlier in the course.
+
+03:08.730 --> 03:13.890
+If you remember we were able to pass in a location and we got some Jason back describing things like
+
+03:13.890 --> 03:17.960
+the latitude and longitude and the formatted address.
+
+03:17.970 --> 03:21.810
+Now this should still be in your Krown history if you deleted your history.
+
+03:21.810 --> 03:29.140
+You can go ahead and go to Google API is right here.
+
+03:29.290 --> 03:34.610
+This is you I'll I'll be using you can simply copy it or you can grab any Jason API.
+
+03:34.670 --> 03:35.540
+You are out.
+
+03:35.920 --> 03:37.120
+I'm going to grab this one.
+
+03:37.120 --> 03:38.240
+Copy it to the clipboard.
+
+03:38.350 --> 03:43.530
+Head back into post man and swap out the L with the u are l I just copied.
+
+03:43.540 --> 03:45.540
+Now I can go ahead and fire off the request.
+
+03:45.550 --> 03:46.620
+And what do we get.
+
+03:46.660 --> 03:49.080
+We get our Jason and data down below.
+
+03:49.180 --> 03:50.850
+And this is fantastic.
+
+03:50.890 --> 03:55.630
+We're able to see exactly what comes back when we make this request and this is how we're going to be
+
+03:55.630 --> 04:02.050
+using postman will use postman to make requests to add to do's delete to do's get all of our to do's
+
+04:02.050 --> 04:02.940
+log in.
+
+04:03.040 --> 04:06.070
+All of that stuff is going to happen right in here.
+
+04:06.130 --> 04:07.510
+Remember API.
+
+04:07.660 --> 04:09.860
+They don't necessarily have a front end.
+
+04:09.880 --> 04:13.480
+Maybe it's an Android app maybe it's an iPhone app or a web app.
+
+04:13.480 --> 04:20.350
+Maybe it's a nother server so postman gives us a way to interact with our API making sure it works as
+
+04:20.350 --> 04:21.360
+expected.
+
+04:21.370 --> 04:27.370
+Here we have all of the Jason data that comes back in the raw view which is underbody we have the raw
+
+04:27.430 --> 04:28.450
+data response.
+
+04:28.450 --> 04:30.820
+Essentially it's just on prettified.
+
+04:30.820 --> 04:34.690
+There is no formatting there is no colorization.
+
+04:34.690 --> 04:36.010
+You'll save a preview.
+
+04:36.010 --> 04:39.250
+The preview is pretty useless for Jason when it comes to Jason data.
+
+04:39.250 --> 04:43.840
+I always stick with the pretty tab which should be the default.
+
+04:43.840 --> 04:48.070
+Now that we have post man installed and we know a little bit about how to use it we're going to move
+
+04:48.070 --> 04:54.250
+on to the next video where we actually create our first request and we'll be firing off a post man request
+
+04:54.550 --> 04:56.030
+to hit that you are Al.
+
+04:56.090 --> 05:02.350
+We're going to create this is going to let us make new to do's right from post man or any other application
+
+05:02.590 --> 05:07.420
+whether it's a web app a mobile app or another server that's all coming up next.
+
+05:07.420 --> 05:12.190
+So just make sure you have postman installed if you were able to do everything in this video you are
+
+05:12.190 --> 05:13.710
+ready to continue on.
+
+05:13.720 --> 05:14.600
+Stay tuned.
+
+05:14.600 --> 05:16.230
+I will see you next time.
